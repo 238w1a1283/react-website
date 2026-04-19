@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatbot</title>
+</head>
+<body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"> </script>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"> </script>
+    <!-- React -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+
+    <!-- ReactDOM -->
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"> </script>
+
+    <script type="text/babel">
+       
+         
+           // <div>
+           //   <button> hello</button>
+            //  <p> paragraph of text {2+2}</p>
+           // </div>
+           function ChatMessage({message , sender}){
+           // const message = props.message;
+            //const sender = props.sender;
+           // const {message , sender} = props;
+
+           /* if(sender=== 'robot'){
+                return (
+                        <div>
+                            <img src="robot.png" width="50"></img>
+                            {message}
+                        </div>
+                    );
+            }
+                    */
+            return(
+                <div>
+                    {sender === 'robot' && <img src ="robot.png" width ="50"/>}
+                {message}
+                    {sender === 'user' && <img src ="user.png" width="50"/>}
+                
+                </div>
+            );
+           }
+          
+           function ChatMessages({chatMessages}){
+              return(
+                <>
+            
+              {chatMessages.map((msg) => {
+                    return(
+                        <ChatMessage 
+                        message = {msg.message}
+                        sender = {msg.sender}
+                        key= {msg.id}
+                        />
+                    );
+              })}
+              </>
+            );
+           }
+        
+         function App(){
+           
+             const [chatMessages,setChatMessages] =React.useState([
+                {
+                    message:'Hello Chatbot',
+                    sender:'user',
+                    id:'id1'
+                    },
+                    {
+                    message:'How can I help you',
+                    sender:'robot',
+                    id:'id2'
+               },
+               {
+                   message:'can you get me todays date',
+                    sender:'user',
+                    id:'id3'
+                
+               },
+               {
+                 message:'Today is september 27',
+                    sender:'robot',
+                    id:'id4'
+               }
+             ]);
+             function addMessage (text){
+                const newMessage ={
+                    message:text,
+                    sender:'user',
+                    id:crypto.randomUUID()
+                };
+                const response = Chatbot.getResponse(text);
+
+                const botMessage ={
+                    message:response,
+                    sender:'robot',
+                    id:crypto.randomUUID()
+
+
+                };
+                setChatMessages(prev =>[
+                    ...prev,
+                    newMessage,
+                    botMessage
+
+                ]);
+             }
+            return(
+                    <div>
+                    <ChatInput onSend={addMessage}/>
+                    <ChatMessages chatMessages={chatMessages}/>
+                </div>
+            );
+         }
+       
+           function LoginForm(){
+            return(
+              <>
+              
+               <div style={{
+                display:"flex" , 
+               flexDirection:"column" ,
+                gap:"10px",
+                width:"300px",
+                margin : "20px auto"
+            }}>
+                <input
+                 placeholder="Email"
+                   style={{width:"100%",padding:"8px"}}/>
+                <input type="Password" placeholder="Password"  
+                 style={{width:"100%",padding:"8px"}}/>
+                
+                </div>
+              
+
+            <div style={{display:"flex" ,gap:"1px",justifyContent:"center"}}>
+
+            <button> Login</button>
+            <button> Sign Up</button>   
+            </div>
+            </>
+            );
+           }
+           function ProductDetails({name,price}){
+            return(
+                <div style={{ 
+                    width:"200px",
+                    display:"flex",
+                    flexDirection:"column",
+                    gap:"5px",
+                    border:"1px solid #ccc",
+                    padding:"10px",
+                    borderRadius:"8px"
+                }}>
+                  <p>{name}</p> 
+                  <p> Price : ${price}</p>
+                  <button>Add to Cart</button>
+                </div>
+            );
+           }
+           function EcommerceApp(){
+            return(
+                <div style={{
+                    display:"flex",
+                    justifyContent:"flex-end",
+                    gap:"15px"
+
+                }}>
+                <ProductDetails name="Cotton Socks" price="10.90"/>
+                <ProductDetails name="Tennis Balls" price="6.00"/>
+                <ProductDetails name="T-shirt" price="15.50"/>
+                    </div>
+            );
+           }
+            function ChatInput({onSend}){
+                const [inputText,setInputText] = React.useState('');
+                function saveInputText(event){
+                    setInputText(event.target.value);
+                }
+                function sendMessage(){
+                    onSend(inputText);
+                    setInputText('');
+                }
+                return (
+                    <>
+                        <input
+                         placeholder="send a message to chatbot"
+                         size="30"
+                         value={inputText}
+                         onChange={saveInputText}
+                         />
+                        <button onClick={sendMessage}> Send</button>
+                    </>
+                );
+           }
+     const container = document.querySelector('.js-container');
+    
+        const root = ReactDOM.createRoot(container);
+        const date = dayjs().format('MMMM D');
+        root.render(<App/>);
+    </script>   
+</body>
+</html>

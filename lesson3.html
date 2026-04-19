@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson3</title>
+</head>
+<body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"> </script>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"> </script>
+    <!-- React -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+
+    <!-- ReactDOM -->
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"> </script>
+    <script type="text/babel">
+        /*
+        function Counter({count,onIncrement}){
+            
+            return (
+                <div>
+                    <button onClick={onIncrement}> 
+                        Click {count} {count===1?"time":"times"}</button>
+                        
+                    </div>
+            );
+           
+        }
+        function App(){
+            const [count ,setCount]=React.useState(0);
+            function handleClick(){
+                console.log("clicked");
+                setCount(prev => prev+1);
+            }   
+            function handleReset(){
+                setCount(0);
+            }
+            return(
+                <div>
+                <Counter count={count} onIncrement={handleClick}/>
+                <Counter count={count} onIncrement={handleClick}/>
+                <br/>
+                <br/>
+                { }
+                <button onClick={handleReset}>Reset</button>
+                </div>
+    
+            );
+            
+            
+
+        }
+            */
+        function App(){
+            const [text,setText]= React.useState('');
+            function handleChange(event){
+                setText(event.target.value); //save input text
+            }
+            function handleReset(){
+                setText('');
+            }
+            function handleExample(){
+                setText('alice');
+            }
+            return(
+                <div>
+                    <input placeholder="type something.. " value={text}  onChange={handleChange}/>
+                    <p>Hello {text}</p>
+                    <button onClick={handleReset}>Reset</button>
+                    <button onClick={handleExample}>Example</button>
+                    </div>
+
+            );
+        }
+
+
+
+
+        const container = document.querySelector('.js-container');
+    
+        const root = ReactDOM.createRoot(container);
+        root.render(<App/>);
+    </script>
+
+</body>
+</html>
