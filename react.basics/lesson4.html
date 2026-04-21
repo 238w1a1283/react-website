@@ -1,0 +1,239 @@
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        .button-on{
+            background-color: green;
+            color:white;
+            padding:10px 20px;
+            border:none;
+        }
+        .button-off{
+            background-color: rgb(220,53,69);
+            color:white;
+            padding:10px 20px;
+            border:none;
+        }   
+            */
+            
+            </style>
+</head>
+<body>
+     <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"> </script>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"> </script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+
+    
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"> </script>
+
+    <script type="text/babel">
+        /*
+        function App(){
+            const [isButton,setIsButton] = React.useState(false);
+            function handleClick(){
+                setIsButton(prev => !prev);
+            }
+            return(
+                <button onClick={handleClick}
+                className = {isButton ? "button-on" : "button-off"}>                {isButton ? "ON" : "OFF"}
+                </button>
+
+            );  
+        }
+            */
+           /*
+           function App(){
+            const [time, setTime]= React.useState(dayjs().format('HH:mm:ss'));
+            React.useEffect(()=>{
+                const intervalId = setInterval(()=>{
+                    console.log('run code');
+                    setTime(dayjs().format('HH:mm:ss'));
+                
+                },1000);
+                return()=>{
+                    clearInterval(intervalId);
+                };
+            });
+            return(
+                <div>
+                    <h1>{time}</h1>
+                    </div>
+            );
+           }
+        const container = document.querySelector('.js-container');
+    
+        const root = ReactDOM.createRoot(container);
+        root.render(<App/>);
+        */
+       /*
+      function App(){
+
+const [count,setCount]=React.useState(0);
+
+const buttonRef=React.useRef(null);
+
+const intervalRef=React.useRef(null);
+
+function handleClick(){
+setCount(prev=>prev+1);
+}
+
+function handleReset(){
+
+setCount(0);
+
+clearInterval(intervalRef.current);
+
+intervalRef.current=setInterval(()=>{
+
+buttonRef.current.click();
+
+},1000);
+
+}
+
+return(
+
+<div>
+
+<h1>{count}</h1>
+
+<button
+ref={buttonRef}
+onClick={handleClick}
+>
+Click Me
+</button>
+
+<button onClick={handleReset}>
+Reset
+</button>
+
+</div>
+
+);
+
+}
+*/
+
+function ChatMessage({message,sender}){
+return(
+<div>
+<b>{sender}:</b> {message}
+</div>
+);
+}
+
+function ChatMessages({chatMessages}){
+
+if(chatMessages.length===0){
+return(
+<div style={{textAlign:"center"}}>
+<h2>Welcome to Chatbot</h2>
+<p>Send a message to start chatting.</p>
+</div>
+);
+}
+
+return(
+<div>
+{chatMessages.map((msg)=>{
+return(
+<ChatMessage
+message={msg.message}
+sender={msg.sender}
+key={msg.id}
+/>
+);
+})}
+</div>
+);
+
+}
+
+function ChatInput({onSend}){
+
+const [inputText,setInputText]=React.useState("");
+
+function handleSend(){
+
+if(!inputText.trim()){
+return;
+}
+
+onSend(inputText);
+
+setInputText("");
+}
+
+return(
+<div>
+
+<input
+value={inputText}
+onChange={(e)=>setInputText(e.target.value)}
+placeholder="Type a message..."
+/>
+
+<button onClick={handleSend}>
+Send
+</button>
+
+</div>
+);
+
+}
+
+function App(){
+
+const [chatMessages,setChatMessages]=React.useState([]);
+
+function addMessage(text){
+
+const userMessage={
+message:text,
+sender:"user",
+id:crypto.randomUUID()
+};
+
+setChatMessages(prev=>[
+...prev,
+userMessage
+]);
+
+}
+
+return(
+<div>
+
+<ChatMessages chatMessages={chatMessages}/>
+
+<ChatInput onSend={addMessage}/>
+
+</div>
+);
+
+}
+
+const container=document.querySelector('.js-container');
+
+const root=ReactDOM.createRoot(container);
+
+root.render(<App/>);
+
+</script>
+</body>
+</html>
+-->
