@@ -66,7 +66,7 @@ export default function DeliveryOptions({
 
               <div className="delivery-option-date">
 
-                {dayjs(option.estimatedDeliveryTime)
+                {dayjs(option.estimatedDeliveryTimeMs)
                   .format('dddd, MMMM D')}
 
               </div>
