@@ -147,8 +147,17 @@ color: rgb(25, 118, 210);
 }
 
 .checkout-page .delivery-option-input {
-  margin: 3px 5px 0px 0px;
+  margin-top: 2px;
+
   cursor: pointer;
+
+  width: 18px;
+  height: 18px;
+
+  accent-color: rgb(13, 110, 253);
+
+  box-shadow: none;
+  outline: none;
 }
 
 .checkout-page .delivery-option-date {
@@ -208,4 +217,23 @@ color: rgb(13, 110, 253);
 
   margin-top: 20px;
   margin-bottom: 19px;
+}
+.checkout-logo {
+  width: 300px;
+  height: 70px;
+
+  object-fit: contain;
+
+  display: block;
+
+  margin-top: 5px;
+}
+.checkout-header-left-section {
+  width: 320px;
+
+  display: flex;
+  align-items: center;
+}
+.checkout-page .delivery-option-input:checked {
+  accent-color: rgb(13, 110, 253);
 }

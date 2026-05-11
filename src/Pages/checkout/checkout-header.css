@@ -27,11 +27,12 @@
 }
 
 .checkout-header .logo {
-  height: 26px;
+  height: 70px;
   margin-top: 0px;
 }
 .checkout-header .mobile-logo {
-  display: none;
+  display: inline-block;
+  height: 60px;
 }
 
 /* @media is used to create responsive design (making the

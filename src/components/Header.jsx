@@ -14,8 +14,11 @@ export function Header({ cart = [] }) {
 
       <div className="left-section">
         <Link to="/" className="header-link">
-        <img className="logo" src="/images/logo.png" alt="logo" />
-       <img className="mobile-logo" src="/images/mobile-logo.png" alt="mobile logo" />
+        <img
+            className="logo"
+            src="/images/icons/akshay-logo.png"
+            alt="Akshay Logo"
+          />
         
         </Link>
       </div>

@@ -6,7 +6,7 @@ import './checkout-header.css';
 import OrderSummary from './OrderSummary';
 import { Link } from 'react-router-dom';
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage({ cart ,loadCart}) {
 
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
@@ -30,7 +30,7 @@ export function CheckoutPage({ cart }) {
    fetchCheckoutData();
      
 
-  }, []);
+  }, [cart]);
 
 
 
@@ -42,10 +42,11 @@ export function CheckoutPage({ cart }) {
 
           <div className="checkout-header-left-section">
             <Link to="/">
-             <img className="logo" src="/images/logo.png" alt="logo" />
-             <img className="mobile-logo" src="/images/mobile-logo.png" alt="mobile logo" />
-             
-             
+             <img
+                            className="checkout-logo"
+                            src="/images/icons/akshay-logo.png"
+                            alt="Akshay Logo"
+                          />
             
             </Link>
           </div>
@@ -72,7 +73,8 @@ export function CheckoutPage({ cart }) {
         <div className="checkout-grid">
 
           {/* LEFT SIDE */}
-     <OrderSummary cart={cart} deliveryOptions={deliveryOptions}/>
+     <OrderSummary cart={cart} deliveryOptions={deliveryOptions}
+     loadCart={loadCart}/>
 
           {/* RIGHT SIDE */}
           <div className="payment-summary">
