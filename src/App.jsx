@@ -7,6 +7,7 @@ import { CheckoutPage } from './Pages/checkout/CheckoutPage'
 import { OrdersPage } from './Pages/orders/OrdersPage'
 import { TrackingPage } from './Pages/tracking/TrackingPage';
 import { NotFoundPage } from './Pages/notfound/NotFoundPage';
+window.axios=axios;
 function App() {
   const [cart, setCart] = useState([]);
 const loadCart = async () => {

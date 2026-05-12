@@ -5,6 +5,7 @@ import { formatMoney } from '../../utils/money';
 export function Product({ product, loadCart }) {
 
   const [quantity, setQuantity] = useState(1);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
  const addToCart = async () => {
 
   await axios.post('/api/cart-items', {
@@ -13,6 +14,11 @@ export function Product({ product, loadCart }) {
   });
 
   await loadCart();
+  setShowAddedMessage(true);
+
+setTimeout(() => {
+  setShowAddedMessage(false);
+}, 2000);
 
 };
   const selectQuantity =(event) => {
@@ -38,6 +44,7 @@ export function Product({ product, loadCart }) {
           className="product-image"
           src={product.image || "/images/default.png"}
           alt="product"
+          data-testid="product-image"
         />
       </div>
 
@@ -49,6 +56,7 @@ export function Product({ product, loadCart }) {
 
         <img
           className="product-rating-stars"
+          data-testid="product-rating-stars-image"
           src={`/images/ratings/rating-${product.rating.stars * 10}.png`}
           alt="rating"
         />
@@ -88,7 +96,8 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className="added-to-cart"
+       style={{ opacity: showAddedMessage ? 1 : 0 }}>
 
         <img
           src="/images/icons/checkmark.png"
@@ -101,7 +110,7 @@ export function Product({ product, loadCart }) {
 
       <button
         className="add-to-cart-button button-primary"
-
+        data-testid = "add-to-cart-button"
         onClick={addToCart}
       >
         Add to Cart
