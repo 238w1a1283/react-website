@@ -43,12 +43,7 @@ let deliveryPercent =
 if (deliveryPercent > 100) {
   deliveryPercent = 100;
 }
-const isPreparing = deliveryPercent < 33;
 
-const isShipped =
-  deliveryPercent >= 33 && deliveryPercent < 100;
-
-const isDelivered = deliveryPercent === 100;
 
 return (
   <>
@@ -81,24 +76,46 @@ return (
   ></div>
 </div>
 
-<div className="progress-labels-container">
+<div className="tracking-container">
 
-  <div
-    className={`progress-label ${isPreparing && 'current-status'}`}
-  >
-    Preparing
+  <div className={`tracking-step ${deliveryPercent >= 10 ? 'active-step' : ''}`}>
+    <div className="tracking-icon">📦</div>
+    <div className="tracking-title">Order Placed</div>
+    <div className="tracking-date">
+      {dayjs(order.orderTimeMs).format('MMM D')}
+    </div>
   </div>
 
-  <div
-    className={`progress-label ${isShipped && 'current-status'}`}
-  >
-    Shipped
+  <div className={`tracking-step ${deliveryPercent >= 35 ? 'active-step' : ''}`}>
+    <div className="tracking-icon">📋</div>
+    <div className="tracking-title">Packed</div>
+    <div className="tracking-date">
+      {dayjs(order.orderTimeMs).add(1, 'day').format('MMM D')}
+    </div>
   </div>
 
-  <div
-    className={`progress-label ${isDelivered && 'current-status'}`}
-  >
-    Delivered
+  <div className={`tracking-step ${deliveryPercent >= 65 ? 'active-step' : ''}`}>
+    <div className="tracking-icon">🚚</div>
+    <div className="tracking-title">Shipped</div>
+    <div className="tracking-date">
+      {dayjs(order.orderTimeMs).add(2, 'day').format('MMM D')}
+    </div>
+  </div>
+
+  <div className={`tracking-step ${deliveryPercent >= 85 ? 'active-step' : ''}`}>
+    <div className="tracking-icon">🏠</div>
+    <div className="tracking-title">Out for delivery</div>
+    <div className="tracking-date">
+      {dayjs(orderProduct.estimatedDeliveryTimeMs).subtract(1, 'day').format('MMM D')}
+    </div>
+  </div>
+
+  <div className={`tracking-step ${deliveryPercent >= 100 ? 'active-step' : ''}`}>
+    <div className="tracking-icon">✅</div>
+    <div className="tracking-title">Delivered</div>
+    <div className="tracking-date">
+      {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMM D')}
+    </div>
   </div>
 
 </div>

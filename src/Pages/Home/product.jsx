@@ -76,7 +76,7 @@ setTimeout(() => {
 
         <select
           value={quantity}
-
+           data-testid="quantity-selector"
           onChange={selectQuantity}
         >
 

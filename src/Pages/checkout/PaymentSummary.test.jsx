@@ -4,29 +4,18 @@ import {
   describe,
   vi
 } from 'vitest';
-import { useLocation } from 'react-router-dom';
+
 import '@testing-library/jest-dom';
 
 import {
   render,
   screen,
-  within
 } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
 import { PaymentSummary } from './PaymentSummary';
-function Location() {
 
-  const location = useLocation();
-
-  return (
-    <div data-testid="url-path">
-      {location.pathname}
-    </div>
-  );
-
-}
 describe('PaymentSummary component', () => {
 
   it('displays the payment summary correctly', () => {

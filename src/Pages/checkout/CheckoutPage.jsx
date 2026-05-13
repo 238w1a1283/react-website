@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import './CheckoutPage.css';
 import './checkout-header.css';
 import OrderSummary from './OrderSummary';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function CheckoutPage({ cart ,loadCart}) {
 
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
+const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Checkout";
@@ -41,7 +42,25 @@ export function CheckoutPage({ cart ,loadCart}) {
 
 
 
+const placeOrder = async () => {
 
+  try {
+
+    console.log('Place Order button clicked');
+
+    await axios.post('/api/orders', {});
+
+    if (loadCart) {
+      await loadCart();
+    }
+
+    navigate('/orders');
+
+  } catch (error) {
+    console.log(error);
+  }
+
+};
   return (
     <>
       {/* HEADER */}
@@ -128,7 +147,10 @@ export function CheckoutPage({ cart ,loadCart}) {
                   </div>
                 </div>
 
-                <button className="place-order-button button-primary">
+               <button
+                className="place-order-button button-primary"
+                onClick={placeOrder}
+              >
                   Place your order
                 </button>
               </>
