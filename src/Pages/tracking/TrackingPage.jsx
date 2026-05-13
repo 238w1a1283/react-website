@@ -69,12 +69,7 @@ return (
   {deliveryPercent >= 100 ? 'Delivered on' : 'Arriving on'}{' '}
   {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
 </div>
-  <div className="progress-bar-container">
-  <div
-    className="progress-bar"
-    style={{ width: `${deliveryPercent}%` }}
-  ></div>
-</div>
+
 
 <div className="tracking-container">
 
