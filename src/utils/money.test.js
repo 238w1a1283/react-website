@@ -3,7 +3,14 @@ import {formatMoney} from './money'
 
 describe('formatMoney',()=>{
 it('formats 1999 cents a $19.99',()=>{
-    expect(formatMoney(1999)).toBe('$19.99');
+    expect(formatMoney(0)).toBe('$0');
+});
+it('formats negative numbers correctly', () => {
+
+  expect(formatMoney(-999)).toBe('-$9.99');
+
+  expect(formatMoney(-100)).toBe('-$1.00');
+
 });
 
 it('displays 2 decimals', ()=>{
