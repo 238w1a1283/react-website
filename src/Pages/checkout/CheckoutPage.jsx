@@ -13,7 +13,7 @@ export function CheckoutPage({ cart ,loadCart}) {
 const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Checkout";
+    document.title = "Ecommerce project";
 
       const fetchCheckoutData = async () =>{
      let response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
